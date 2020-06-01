@@ -1,0 +1,4 @@
+- hosts: all
+  roles:
+    - { role: volumes, when: instance_store_enabled | default(false) | bool }
+    - 0x0i.zcashd

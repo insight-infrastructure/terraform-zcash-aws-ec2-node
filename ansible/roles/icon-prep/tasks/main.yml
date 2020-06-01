@@ -1,0 +1,42 @@
+---
+
+- name: Create icon group
+  group:
+    name: icon
+    state: present
+
+- name: Add icon user
+  user:
+    name: icon
+    group: icon
+    append: yes
+
+- name: Include debian installs
+  include_tasks: debian.yml
+  when: ansible_os_family == 'Debian'
+
+- name: Common tasks
+  include_tasks: common.yml
+  tags:
+    - update-configs
+
+- name: Include nginx conf files
+  include_tasks: nginx.yml
+  when: reverse_proxy_type == 'nginx'
+  tags:
+    - update-configs
+
+- name: Enable docker service
+  systemd:
+    name: docker
+    enabled: yes
+    masked: no
+
+- name: Configure exporters
+  include_tasks: exporters.yml
+
+- name: Include sync the application
+  include_tasks: sync.yml
+  when: sync_db | bool
+  tags:
+    - service-start
