@@ -48,6 +48,12 @@ variable "vpc_security_group_ids" {
 #####
 # ec2
 #####
+variable "instance_count" {
+  description = "The number of instances to run"
+  type        = string
+  default     = 1
+}
+
 variable "key_name" {
   description = "The key pair to import - leave blank to generate new keypair from pub/priv ssh key path"
   type        = string

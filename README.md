@@ -90,6 +90,7 @@ No issue is creating limit on this module.
 | ebs\_volume\_id | The volume id of the ebs volume to mount | `string` | `""` | no |
 | ebs\_volume\_size | The size of volume - leave as zero or empty for no volume | `number` | `0` | no |
 | ebs\_volume\_type | Type of EBS - https://aws.amazon.com/ebs/volume-types/ | `string` | `"gp2"` | no |
+| instance\_count | The number of instances to run | `string` | `1` | no |
 | instance\_type | Instance type | `string` | `"t2.micro"` | no |
 | key\_name | The key pair to import - leave blank to generate new keypair from pub/priv ssh key path | `string` | `""` | no |
 | keystore\_password | The password to the keystore | `string` | `""` | no |

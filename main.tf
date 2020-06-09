@@ -41,7 +41,7 @@ locals {
 }
 
 resource "aws_instance" "this" {
-  count         = var.create ? 1 : 0
+  count         = var.create ? var.instance_count : 0
   ami           = local.ami_id
   instance_type = local.instance_type
 
