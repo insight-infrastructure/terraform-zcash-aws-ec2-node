@@ -94,6 +94,12 @@ variable "private_key_path" {
   type        = string
 }
 
+variable "ami_id" {
+  description = "The AMI ID to run"
+  type        = string
+  default     = ""
+}
+
 #####
 # EBS
 #####

@@ -81,6 +81,7 @@ No issue is creating limit on this module.
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:-----:|
+| ami\_id | The AMI ID to run | `string` | `""` | no |
 | ansible\_hardening | Run hardening roles | `bool` | `false` | no |
 | associate\_eip | Boolean to determine if you should associate the ip when the instance has been configured | `bool` | `true` | no |
 | create | Boolean to create resources or not | `bool` | `true` | no |

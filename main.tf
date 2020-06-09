@@ -36,9 +36,13 @@ resource "aws_volume_attachment" "this" {
   force_detach = true
 }
 
+locals {
+  ami_id = var.ami_id != "" ? var.ami_id : module.ami.ubuntu_1804_ami_id
+}
+
 resource "aws_instance" "this" {
   count         = var.create ? 1 : 0
-  ami           = module.ami.ubuntu_1804_ami_id
+  ami           = local.ami_id
   instance_type = local.instance_type
 
   root_block_device {
@@ -57,7 +61,7 @@ resource "aws_instance" "this" {
 
 module "ansible" {
   source           = "github.com/insight-infrastructure/terraform-aws-ansible-playbook.git?ref=v0.10.0"
-  create           = var.create
+  create           = var.create && var.ami_id == ""
   ip               = join("", aws_eip.public_ip.*.public_ip)
   user             = "ubuntu"
   private_key_path = var.private_key_path
